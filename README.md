@@ -14,7 +14,15 @@ On the Internet, as we learned in security, if someone wants to make sure that t
 ssh-keygen produces a public key that looks like this:
 
 ```
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vizHnICu5UOXdOTtO2S+lnvexqtsTpgtV3RMt+ANI6DMEZSnEM22SVtUbqQaUZH3kuw1B2wqv7SOTmAD0lM06GIyk8B7QB4F8NFhM3F2zKNN3rHYss6oUvahgVSybnC5kF4fZCRztAaRepWbB3Q8oX5Y/VmBAIhJIs+sxO93a0BgrprZvCtniY/+Hhm74E6Mqpls5tin2oijqT0qhTmCOJi7Y9F8T/EkCg9TZ0ZTzxBqs08G8mmBjxT3MAf7AdydoaEVZl2It28tfUThdeuCuFvV86xOiliz1/CbCTBOwIrvFI7QmvRRsZCiT3oT0FSw46dRuC+tFFVs5irYb59n rhildred@helmsdeep.local
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC
++vizHnICu5UOXdOTtO2S+lnvexqtsTpgtV3RMt+ANI6DMEZSnEM22SVtUbqQaUZH3kuw1B2wqv7SOTmAD0lM0
+6GIyk8B7QB4F8NFhM3F2zKNN3rHYss6oUvahgVSybnC5kF4
+fZCRztAaRepWbB3Q8oX5Y/VmBAIhJIs
++sxO93a0BgrprZvCtniY/+Hhm74E6Mqpls5tin2oijqT0qhTmCOJi7Y9F8T/EkCg9TZ0
+ZTzxBqs08G8mmBjxT3MAf7AdydoaEVZl2It28tfUThdeuCu
+FvV86xOiliz1/CbCTBOwIrvFI7QmvRRsZCiT3oT0FSw46dR
+uC+tFFVs5irYb59n rhildred@helmsdeep.local
 
 ```
 
