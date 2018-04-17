@@ -439,8 +439,8 @@ Why?
 * Containing groups of devices that rely on legacy protocols incompatible with the majority of the network’s traffic
 * Separating a very large network into smaller, more manageable subnets
 
-## Midterm
+## Final
 
-* 90 questions
+* 87 questions
 * True/False, Multiple choice, Fill in the blank and Short Answer.
 * 90 minutes
