@@ -36,10 +36,6 @@ The user will need to point filezilla at their private key file:
 
 Finally I need to configure apache to run as the user which I have configured.
 
-![set private key file](https://rhildred.github.io/apacheAssignUserID/READMEImages/sftpconnected.png "set private key file")
-
-Then the user can use filezilla to create a new folder and put files into it. There is one more step for the server administrator to soft-link the config file in to the /etc/apache2/sites-enabled folder and restart apache. 
-
 ```
 
 <VirtualHost *:443>
@@ -53,6 +49,12 @@ Then the user can use filezilla to create a new folder and put files into it. Th
 
 
 ``` 
+
+![set private key file](https://rhildred.github.io/apacheAssignUserID/READMEImages/sftpconnected.png "set private key file")
+
+Then the user can use filezilla to create a new folder and put files into it. There is one more step for the server administrator to soft-link the config file in to the /etc/apache2/sites-enabled folder and restart apache. 
+
+
 
 Note that the certificate file is a self signed certificate as I am using a reverse proxy cloudflare to provide access to my resources.
 
