@@ -1,75 +1,48 @@
-# <a href="https://github.com/rhildred/netget" target="_blank">netget</a>
-## gets a url using .net core
+# <a href="https://github.com/rhildred/apacheAssignUserID" target="_blank">Assign User ID</a>
+## update a shared web server using sftp
 
-This is a project for my 2nd term INFO1380 networking class. More about networking then about .net core. This class has had a 1 semester introduction to programming in .net. I am developing this on OSX/macos during reading week. OSX because I have OSX from when a friend and I started a software company in the Waterloo Ontario Accelerator Center. All of the cool software startups ran OSX!
+This is a project for my 2nd term INFO1380 networking class. More about networking then about apache and the AssignUserID directive.
 
-To get running I:
+I want to start by making a point about the cloud and asymmetrical encryption.
 
-1. Installed vscode [from here](https://code.visualstudio.com/download).
-1. Installed .net core [from here](https://www.microsoft.com/net/download/macos).
-1. Added the C# powered by OmniSharp extension in vscode.
+![message for Alice](https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg "message for Alice") 
 
-In vscode I:
+On the Internet, as we learned in security, if someone wants to make sure that their data is secure they need to encrypt it. Public key encryption uses a key pair. A public key and a private key. One can make a key pair by typing `ssh-keygen` at a bash prompt. Git bash will do.
 
-1. Opened a new folder.
-1. Opened a terminal window and ran `dotnet new console`.
-1. Opened the resulting Program.cs and pressed `Ctrl-F5`.
-1. Clicked `yes` on the following dialog.
+![ssh-keygen](https://rhildred.github.io/apacheAssignUserID/READMEImages/ssh-keygen.png "ssh-keygen")
 
-![click yes](https://rhildred.github.io/netget/READMEImages/RequiredAssets.png "click yes")
+ssh-keygen produces a public key that looks like this:
 
-The next time I pressed `Ctrl-F5` I was treated to:
-
-![hello world!](https://rhildred.github.io/netget/READMEImages/HelloWorld.png "hello world!")
-
-Then I replaced all of the code in Program.cs with this, my first networking code!!!!!:
+```
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vizHnICu5UOXdOTtO2S+lnvexqtsTpgtV3RMt+ANI6DMEZSnEM22SVtUbqQaUZH3kuw1B2wqv7SOTmAD0lM06GIyk8B7QB4F8NFhM3F2zKNN3rHYss6oUvahgVSybnC5kF4fZCRztAaRepWbB3Q8oX5Y/VmBAIhJIs+sxO93a0BgrprZvCtniY/+Hhm74E6Mqpls5tin2oijqT0qhTmCOJi7Y9F8T/EkCg9TZ0ZTzxBqs08G8mmBjxT3MAf7AdydoaEVZl2It28tfUThdeuCuFvV86xOiliz1/CbCTBOwIrvFI7QmvRRsZCiT3oT0FSw46dRuC+tFFVs5irYb59n rhildred@helmsdeep.local
 
 ```
 
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+To communicate with our web server to put files on their we will reverse the Alice example a little. We will encrypt with our private key. The web server will decrypt with our public key. That way our files can only have come from us. This way we don't need to get our private key on to the web server. 
 
-namespace helloC_
-{
-    class Program
-    {
-        private static readonly HttpClient client = new HttpClient();
-        private static async Task ProcessRepositories(string sUrl)
-        {
-            var stringTask = client.GetStringAsync(sUrl);
+We do need to get our public key on to the web server. Generally if I am running a web server I will ask for the webmaster to email me their public key. I will create a user on the webmaster's behalf. In the user's .ssh folder I will need to add their public key into a file called `authorized_keys`.
 
-            var msg = await stringTask;
-            Console.Write(msg);
-        }
-        static void Main(string[] args)
-        {
-            if(args.Length > 0){
-                ProcessRepositories(args[0]).Wait();
-            }else{
-                Console.WriteLine("usage .... " + System.AppDomain.CurrentDomain.FriendlyName + " <url>");
-            }
-        }
-    }
-}
+The user will need to point filezilla at their private key file:
 
+![set private key file](https://rhildred.github.io/apacheAssignUserID/READMEImages/setprivatekey.png "set private key file")
 
+Finally I need to configure apache to run as the user which I have configured.
 
 ```
 
-Then when I pressed `Ctrl-F5` I was treated to this:
+<VirtualHost *:443>
+ AssignUserID breakthroughs breakthroughs
+ ServerName breakthroughs.ysaas.ca
+ DocumentRoot /home/breakthroughs/public_html/breakthroughs
+ SSLEngine on
+ SSLCertificateFile /etc/apache2/ssl/breakthroughs.crt
+ SSLCertificateKeyFile /etc/apache2/ssl/breakthroughs.key
+</VirtualHost>
 
-![usage .... netget <url>](https://rhildred.github.io/netget/READMEImages/usage.png "usage .... netget <url>")
 
-Almost there! To get `args[0]` populated I had to change the debug config in `.vscode/launch.json` to add to the `args[]`.
+``` 
 
-![added http://rhildred.github.io](https://rhildred.github.io/netget/READMEImages/launch.json.png "added http://rhildred.github.io")
 
-Finally when I pressed `Ctrl-F5` I was treated with:
-
-![the end of the html for my home page](https://rhildred.github.io/netget/READMEImages/HtmlSuccess.png "the end of the html for my home page")
-
-Whoa! What just happened here? Well it turned out that a lot had to go right for this to work. All of that is the true thrust of this networking course.
 
 ## Divide and conquer with layers
 
