@@ -443,6 +443,6 @@ Why?
 
 ## Final
 
-* 87 questions
+* 90 questions
 * True/False, Multiple choice, Fill in the blank and Short Answer.
-* 90 minutes
+* 120 minutes
